@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="d-flex p-2">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Registro nueva acta</h5>
+                <div class="card text-center">             
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item mr-2" ><a class="page-link" href="{% url 'Registro' %}">Acta</a></li>
+                            <li class="page-item mr-2"><a class="page-link" href="{% url 'RegistroUser' %}">Asistentes</a></li>
+                            <li class="page-item mr-2"><a class="page-link" href="{% url 'RegistroDevelop' %}">Desarrollo</a></li>
+                            <li class="page-item mr-2"><a class="page-link" href="{% url 'RegistroCommintment' %}">Compromisos</a></li>
+                        </ul>
+                    </nav>
+                    {% block formulario %}
+                    {% endblock %}
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#pagination-list').on('click', 'a', function(event) {
+            event.preventDefault();
+
+            // Obtén el número de página al que se hizo clic
+            var page = $(this).text();
+
+            // Realiza las operaciones necesarias para actualizar los datos de la página
+            // Puedes hacer una petición AJAX para obtener los datos correspondientes a la página seleccionada
+
+            // Actualiza los datos en la página según la página seleccionada
+
+            // Opcional: Agrega clases CSS para resaltar el elemento de paginación activo
+            $('#pagination-list .active').removeClass('active');
+            $(this).parent().addClass('active');
+        });
+    });
+    <script>
+        $(document).ready(function() {
+            $('#pagination-list').on('click', 'a', function(event) {
+                event.preventDefault();
+        
+                var page = $(this).text();
+        
+                // Realiza las operaciones necesarias para actualizar los datos de la página
+                // Puedes hacer una petición AJAX para obtener los datos correspondientes a la página seleccionada
+        
+                // Actualiza los datos en la página según la página seleccionada
+        
+                // Opcional: Agrega clases CSS para resaltar el elemento de paginación activo
+                $('#pagination-list .active').removeClass('active');
+                $(this).parent().addClass('active');
+            });
+        });
+        </script>
+{% endblock %}

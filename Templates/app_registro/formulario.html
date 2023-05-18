@@ -1,0 +1,80 @@
+{% extends 'app_registro/pages.html' %}
+
+{% block formulario %}
+
+{% load crispy_forms_tags %}
+<!-- Incluir los archivos CSS y JS del selector de fecha y hora -->
+<link rel="stylesheet" href="ruta/al/css/bootstrap-datetimepicker.css">
+<script src="ruta/al/js/bootstrap-datetimepicker.js"></script>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="d-flex p-2">
+            <form method="post">
+                {% csrf_token %}
+                <table class="table">  
+                      <td>
+                        <table class="table">
+                          <tr>
+                            <td>
+                              ACTA DE REUNION
+                            </td>
+                            <td>
+                              <label for="{{ form.num.id_for_label }}">Acta N°</label>
+                              {{ form.num }}
+                            </td>
+                          </tr> 
+                          <tr> 
+                            <td>
+                              UNIVERSIDAD DE ANTIOQUIA
+                            </td>  
+                            <td>
+                              <label for="{{ form.pub_date.id_for_label }}">Fecha</label>
+                              {{ form.pub_date }}
+                            </td>
+                          </tr> 
+                          <tr> 
+                            <td>
+                              <label for="{{ form.process_text.id_for_label }}">Proceso/Dependecia</label>
+                              {{ form.process_text }}
+                            </td>
+                            <td>
+                              <label for="{{ form.type_meet.id_for_label }}">Tipo de reunion</label>
+                              {{ form.type_meet }}
+                            </td>
+                            <td>
+                              <label for="{{ form.hour.id_for_label }}">Hora</label>
+                              {{ form.hour }}
+                            </td>
+                          </tr> 
+                          <tr> 
+                            <td>
+                              <label for="{{ form.next_meet.id_for_label }}">Proxima reunion</label>
+                              {{ form.next_meet }}
+                            </td>
+                            <td>
+                              <label for="{{ form.place.id_for_label }}">Lugar</label>
+                              {{ form.place }}
+                            </td>
+                          </tr>  
+                        </table>
+                      </td>
+                  </table>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- Inicializar el selector de fecha y hora -->
+<script>
+  $(document).ready(function() {
+      $('.datetimepicker').datetimepicker({
+          // Configuración adicional del selector de fecha y hora, si es necesario
+      });
+  });
+</script>
+
+
+{% endblock %}

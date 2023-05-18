@@ -1,0 +1,81 @@
+{% extends 'app_registro/pages.html' %}
+
+{% block formulario %}
+
+{% load crispy_forms_tags %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="d-flex p-2">
+            <form method="post">
+                {% csrf_token %}
+                <div class="container">
+                    <table class="table" id="campos-table">
+                        <tr>
+                          <td>
+                            <label for="{{ form.date.id_for_label }}">Fecha</label>
+                            {{ form.date}}
+                          </td>
+                          <td>
+                            <label for="{{ form.observations.id_for_label }}">Observaciones</label>
+                            {{ form.observations }}
+                          </td>
+                          <td>
+                            <label for="{{ form.commitment.id_for_label }}">Compromiso</label>
+                            {{ form.commitment }}
+                          </td>
+                        </tr>
+                        <td>
+                          <label for="{{ form.control.id_for_label }}">Control</label>
+                          {{ form.control}}
+                        </td>
+                      </table>
+                    <div id="campos-extra"></div>
+                    <button type="button" class="btn btn-primary" onclick="agregarCampo()">Agregar Nuevo Campo</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+  let contadorCampos = 2; // Contador para asignar IDs únicos a los nuevos campos
+
+  function agregarCampo() {
+    const camposExtra = document.getElementById("campos-extra");
+
+    // Crear el nuevo campo
+    const nuevoCampo = document.createElement("div");
+    nuevoCampo.className = "form-group";
+    nuevoCampo.innerHTML = `
+      
+    <table class="table" id="campos-table">
+        <tr>
+          <td>
+            <label for="{{ form.date.id_for_label }}">Fecha</label>
+            {{ form.date}}
+          </td>
+          <td>
+            <label for="{{ form.observations.id_for_label }}">Observaciones</label>
+            {{ form.observations }}
+          </td>
+          <td>
+            <label for="{{ form.commitment.id_for_label }}">Compromiso</label>
+            {{ form.commitment }}
+          </td>
+        </tr>
+        <td>
+          <label for="{{ form.control.id_for_label }}">Control</label>
+          {{ form.control}}
+        </td>
+      </table>
+    `;
+    // Agregar el nuevo campo al contenedor
+    camposExtra.appendChild(nuevoCampo);
+    // Incrementar el contador de campos
+    contadorCampos++;
+  }
+</script>
+{% endblock %}
